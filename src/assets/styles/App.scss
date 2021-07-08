@@ -1,6 +1,16 @@
+@import "./Vars.scss";
+@import "./Media.scss";
+
 body {
   margin: 0;
-  background: red;
-  color: #ffffff;
-  font-family: "Helvetica";
+  font-family: $theme-font;
+  background: $main-color;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
