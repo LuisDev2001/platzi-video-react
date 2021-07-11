@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Search from "../components/Search";
 
@@ -9,40 +9,48 @@ import Footer from "../components/Footer";
 
 import "../assets/styles/App.scss";
 
-const App = () => (
-  <>
-    <Header />
+//Custom hooks
 
-    <Search />
+import useInitialState from "../hooks/useInitialState";
 
-    <Categories title="Mi lista">
-      <Carousel>
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-      </Carousel>
-    </Categories>
+const API = "http://localhost:3000/initalState";
 
-    <Categories title="Tendencias">
-      <Carousel>
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-      </Carousel>
-    </Categories>
+const App = () => {
+  //Hooks or logics
+  const initialState = useInitialState(API);
 
-    <Categories title="Originales de PlatziVideo">
-      <Carousel>
-        <CarouselItem />
-        <CarouselItem />
-      </Carousel>
-    </Categories>
+  return (
+    <>
+      <Header />
 
-    <Footer />
-  </>
-);
+      <Search />
+      {initialState.mylist.length > 0 && (
+        <Categories title="Mi lista">
+          <Carousel>
+            <CarouselItem />
+          </Carousel>
+        </Categories>
+      )}
+
+      <Categories title="Tendencias">
+        <Carousel>
+          {initialState.trends.map((trend) => (
+            <CarouselItem key={trend.id} {...trend} />
+          ))}
+        </Carousel>
+      </Categories>
+
+      <Categories title="Originales de PlatziVideo">
+        <Carousel>
+          {initialState.originals.map((original) => (
+            <CarouselItem key={original.id} {...original} />
+          ))}
+        </Carousel>
+      </Categories>
+
+      <Footer />
+    </>
+  );
+};
 
 export default App;
