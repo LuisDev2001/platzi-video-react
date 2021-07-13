@@ -3,10 +3,13 @@ import "../assets/styles/components/Header.scss";
 
 import logoPlatziVideo from "../assets/img/logo-platzi-video-BW2.png";
 import userIcon from "../assets/img/user-icon.png";
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <header className="header">
-    <img className="header__img" src={logoPlatziVideo} alt="Platzi Video" />
+    <Link to="/">
+      <img className="header__img" src={logoPlatziVideo} alt="Platzi Video" />
+    </Link>
     <div className="header__menu">
       <div className="header__menu--profile">
         <img src={userIcon} alt="" />

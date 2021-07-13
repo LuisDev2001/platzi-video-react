@@ -21,8 +21,6 @@ const Home = () => {
 
   return (
     <>
-      <Header />
-
       <Search />
       {initialState.mylist.length > 0 && (
         <Categories title="Mi lista">
@@ -49,8 +47,6 @@ const Home = () => {
           ))}
         </Carousel>
       </Categories>
-
-      <Footer />
     </>
   );
 };
