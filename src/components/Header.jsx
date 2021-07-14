@@ -20,6 +20,9 @@ const Header = () => (
           <a href="/">Cuenta</a>
         </li>
         <li>
+          <Link to="/login">Iniciar sesión</Link>
+        </li>
+        <li>
           <a href="/">Cerrar Sesión</a>
         </li>
       </ul>
