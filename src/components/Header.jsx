@@ -5,6 +5,7 @@ import gravatar from "../utils/gravatar";
 import "../assets/styles/components/Header.scss";
 import logo from "../assets/img/logo-platzi-video-BW2.png";
 import userIcon from "../assets/img/user-icon.png";
+import { logoutRequest } from "../actions";
 
 const Header = (props) => {
   console.log(props);
@@ -56,8 +57,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = {
-//   logoutRequest,
-// };
+const mapDispatchToProps = {
+  logoutRequest,
+};
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
