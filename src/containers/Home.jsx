@@ -9,15 +9,11 @@ import CarouselItem from "../components/CarouselItem";
 
 import "../assets/styles/App.scss";
 
-//Custom hooks
-
-import useInitialState from "../hooks/useInitialState";
-
 const Home = ({ mylist, trends, originals }) => {
   return (
     <>
       <Header />
-      <Search />
+      <Search isHome />
       {mylist.length > 0 && (
         <Categories title="Mi lista">
           <Carousel>
