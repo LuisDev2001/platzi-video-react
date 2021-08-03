@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+
 import { connect } from "react-redux";
 import Search from "../components/Search";
 import Categories from "../components/Categories";
 import Carousel from "../components/Carousel";
+import Header from "../components/Header";
 import CarouselItem from "../components/CarouselItem";
 
 import "../assets/styles/App.scss";
@@ -14,6 +16,7 @@ import useInitialState from "../hooks/useInitialState";
 const Home = ({ mylist, trends, originals }) => {
   return (
     <>
+      <Header />
       <Search />
       {mylist.length > 0 && (
         <Categories title="Mi lista">
