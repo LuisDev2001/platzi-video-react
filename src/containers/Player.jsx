@@ -1,17 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { getVideoSource } from "../actions";
 import "../assets/styles/components/Player.scss";
 
-const Player = () => {
-  return (
+const Player = (props) => {
+  const { id } = props.match.params;
+
+  const handleButtonBack = () => {
+    props.history.goBack();
+  };
+
+  const hasPlaying = Object.keys(props.playing).length > 0;
+
+  useEffect(() => {
+    props.getVideoSource(id);
+  }, []);
+
+  return hasPlaying ? (
     <div className="player">
       <video controls autoPlay>
-        <source src="" type="video/mp4" />
+        <source src={props.playing.source} type="video/mp4" />
       </video>
-      <div className="Player-black">
-        <button type="button">Regresar</button>
+      <div className="Player-back">
+        <button type="button" onClick={handleButtonBack}>
+          Regresar
+        </button>
       </div>
     </div>
+  ) : (
+    <Redirect to="/404/" />
   );
 };
 
-export default Player;
+const mapStateToProps = (state) => {
+  return {
+    playing: state.playing,
+  };
+};
+
+const mapDispatchToProps = {
+  getVideoSource,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
